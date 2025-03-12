@@ -58,7 +58,7 @@ export function ApplicationDialog({
 
       toast("Success!", {
         description: "Your application has been submitted.",
-        duration: 3000,
+        // duration: 5000,
       });
 
       onOpenChange(false);

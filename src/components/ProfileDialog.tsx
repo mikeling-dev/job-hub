@@ -77,7 +77,10 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
             </form>
           </TabsContent>
 
-          <TabsContent value="applications" className="space-y-4">
+          <TabsContent
+            value="applications"
+            className="space-y-4 h-72 overflow-auto"
+          >
             {userProfile?.applications?.map((app) => {
               // Convert Firestore timestamp to Date object
               const appliedDate =
