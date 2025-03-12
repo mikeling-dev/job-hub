@@ -3,19 +3,24 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from "@/lib/firebase";
 import { User as FirebaseUser } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
 
+interface Application {
+  jobId: string;
+  jobTitle: string;
+  appliedAt: Date | Timestamp;
+  resumeUrl?: string;
+  name: string;
+  email: string;
+  selfIntro: string;
+}
 interface UserProfile {
   uid: string;
   email: string;
   name?: string;
   phone?: string;
   selfIntro?: string;
-  applications?: {
-    jobId: string;
-    jobTitle: string;
-    appliedAt: Date;
-  }[];
+  applications?: Application[];
 }
 
 interface AuthContextType {

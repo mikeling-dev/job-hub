@@ -6,6 +6,7 @@ import { Textarea } from "./ui/textarea";
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { format } from "date-fns";
+import { Timestamp } from "firebase/firestore";
 
 interface ProfileDialogProps {
   open: boolean;
@@ -86,7 +87,7 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
               const appliedDate =
                 app.appliedAt instanceof Date
                   ? app.appliedAt
-                  : new Date((app.appliedAt as any)?.seconds * 1000);
+                  : new Date((app.appliedAt as Timestamp)?.seconds * 1000);
 
               return (
                 <div

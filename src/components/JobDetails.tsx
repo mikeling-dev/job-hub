@@ -7,6 +7,7 @@ import { Badge } from "./ui/badge";
 import { useAuth } from "@/contexts/AuthContext";
 import { AuthDialog } from "./AuthDialog";
 import { ApplicationDialog } from "./ApplicationDialog";
+import Image from "next/image";
 
 interface Job {
   id: string;
@@ -54,7 +55,7 @@ export default function JobDetails({ job }: JobDetailsProp) {
         <div className="flex flex-col gap-2">
           <h1 className="text-2xl font-bold">{job.title}</h1>
           <div className="flex flex-row gap-2 align-bottom text-end">
-            <img src={job.company_logo} alt="logo" height={60} width={60} />
+            <Image src={job.company_logo} alt="logo" height={60} width={60} />
             <p className="self-end">
               {job.company} - {job.location}
             </p>

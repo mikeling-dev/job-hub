@@ -7,7 +7,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { db, storage } from "@/lib/firebase";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
-import { toast } from "sonner";
+import { FirebaseError } from "firebase/app";
 
 interface ApplicationDialogProps {
   open: boolean;
@@ -56,14 +56,10 @@ export function ApplicationDialog({
         }),
       });
 
-      toast("Success!", {
-        description: "Your application has been submitted.",
-        // duration: 5000,
-      });
-
       onOpenChange(false);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const error = err as FirebaseError;
+      setError(error.message);
     }
   };
 

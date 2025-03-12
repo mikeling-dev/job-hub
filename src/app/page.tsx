@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { fetchRemotiveJobs } from "@/lib/fetchJobs";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Job {
   id: string;
@@ -77,7 +77,7 @@ export default function Home() {
     setLoadedJobs(sortJobs(filteredJobs));
 
     // set states...
-  }, [query, sortBy]);
+  }, [query, sortBy, allJobs, sortJobs]);
 
   useEffect(() => {
     const fetchJobs = async () => {

@@ -10,6 +10,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
+import { FirebaseError } from "firebase/app";
 
 interface AuthDialogProps {
   open: boolean;
@@ -33,8 +34,9 @@ export function AuthDialog({ open, onOpenChange }: AuthDialogProps) {
         await createUserWithEmailAndPassword(auth, email, password);
       }
       onOpenChange(false);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const error = err as FirebaseError;
+      setError(error.message);
     }
   };
 
@@ -43,8 +45,9 @@ export function AuthDialog({ open, onOpenChange }: AuthDialogProps) {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
       onOpenChange(false);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const error = err as FirebaseError;
+      setError(error.message);
     }
   };
 
