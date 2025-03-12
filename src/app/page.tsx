@@ -29,6 +29,7 @@ interface Job {
 export default function Home() {
   const [query, setQuery] = useState("");
   const [loadedJobs, setLoadedJobs] = useState<Job[]>([]);
+  const [loading, setLoading] = useState(true);
   const [allJobs, setAllJobs] = useState<Job[]>([]);
   const [sortBy, setSortBy] = useState<
     "title" | "company" | "date" | "Sort By"
@@ -83,10 +84,21 @@ export default function Home() {
       const jobs = await fetchRemotiveJobs();
       setLoadedJobs(jobs);
       setAllJobs(jobs);
+      setLoading(false);
     };
     fetchJobs();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="flex flex-col items-center gap-4">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+          <p className="text-lg">Loading jobs...</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="grid gap-4 p-8 w-full">
       <div className="flex flex-row w-full gap-2">

@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import { Button } from "./ui/button";
-import Link from "next/link";
 import { Card, CardDescription, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
+import { useAuth } from "@/contexts/AuthContext";
+import { AuthDialog } from "./AuthDialog";
+import { ApplicationDialog } from "./ApplicationDialog";
 
 interface Job {
   id: string;
@@ -30,10 +32,22 @@ function formatDescription(text: string) {
 }
 
 export default function JobDetails({ job }: JobDetailsProp) {
+  const { user } = useAuth();
   const [isExpanded, setIsExpanded] = useState(false);
+  const [showAuthDialog, setShowAuthDialog] = useState(false);
+  const [showApplicationDialog, setShowApplicationDialog] = useState(false);
 
   const shortDescription = job.description.slice(0, 600);
   const shouldTruncate = job.description.length > 600;
+
+  const handleApplyClick = () => {
+    if (!user) {
+      setShowAuthDialog(true);
+    } else {
+      setShowApplicationDialog(true);
+    }
+  };
+
   return (
     <div className="p-8 w-full flex flex-col gap-4">
       <div className="flex flex-col md:flex-row md:justify-between gap-4">
@@ -86,11 +100,17 @@ export default function JobDetails({ job }: JobDetailsProp) {
           {isExpanded ? "Show Less" : "See Full Description"}
         </Button>
       )}
-      <Button className="w-full">
-        <a href={job.link} target="_blank" className="w-full">
-          Apply Now!
-        </a>
+      <Button className="w-full" onClick={handleApplyClick}>
+        Apply Now!
       </Button>
+
+      <AuthDialog open={showAuthDialog} onOpenChange={setShowAuthDialog} />
+      <ApplicationDialog
+        open={showApplicationDialog}
+        onOpenChange={setShowApplicationDialog}
+        jobId={job.id}
+        jobTitle={job.title}
+      />
     </div>
   );
 }

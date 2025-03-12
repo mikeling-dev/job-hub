@@ -39,7 +39,7 @@ export async function fetchRemotiveJobs() {
   const url = "https://remotive.com/api/remote-jobs";
   const response = await fetch(url);
   const startingIndex = 0;
-  const endingIndex = 200;
+  const endingIndex = 150;
 
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
