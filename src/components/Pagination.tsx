@@ -22,29 +22,29 @@ export default function PaginationComponent({
   const showEllipsis = totalPages > 5;
 
   const getPageNumbers = () => {
-    if (totalPages <= 5) {
+    if (totalPages <= 3) {
       return Array.from({ length: totalPages }, (_, i) => i + 1);
     }
 
     if (currentPage <= 3) {
-      return [1, 2, 3, 4, 5];
+      return [1, 2, 3];
     }
 
     if (currentPage >= totalPages - 2) {
-      return Array.from({ length: 5 }, (_, i) => totalPages - 4 + i);
+      return Array.from({ length: 3 }, (_, i) => totalPages - 4 + i);
     }
 
     return [
-      currentPage - 2,
+      // currentPage - 2,
       currentPage - 1,
       currentPage,
       currentPage + 1,
-      currentPage + 2,
+      // currentPage + 2,
     ];
   };
 
   return (
-    <Pagination>
+    <Pagination className="w-full">
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious

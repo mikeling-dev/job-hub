@@ -77,7 +77,7 @@ export default function Home() {
     setLoadedJobs(sortJobs(filteredJobs));
 
     // set states...
-  }, [query, sortBy, allJobs, sortJobs]);
+  }, [query, sortBy]);
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -100,14 +100,15 @@ export default function Home() {
     );
   }
   return (
-    <div className="grid gap-4 p-8 w-full">
-      <div className="flex flex-row w-full gap-2">
+    <div className="mx-auto grid gap-4 p-6 md:p-8 w-full">
+      <div className="flex md:flex-row gap-2 w-full">
         <Input
           placeholder="Search for company or positions..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="w-3/4 text-sm"
         ></Input>
+
         <Select
           onValueChange={(value: "title" | "company" | "date") =>
             setSortBy(value)
@@ -135,7 +136,6 @@ export default function Home() {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
       />
-      ;
     </div>
   );
 }

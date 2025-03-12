@@ -20,7 +20,7 @@ export default function Navbar() {
   const [showProfileDialog, setShowProfileDialog] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 w-full h-16 content-center bg-background border-b z-50 px-8 flex justify-between items-center">
+    <nav className="fixed top-0 left-0 right-0 w-screen h-16 content-center bg-background border-b z-50 px-8 flex justify-between items-center">
       <Link href={"/"} className="font-bold text-2xl h-fit">
         Job Hub
       </Link>

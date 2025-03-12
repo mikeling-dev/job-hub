@@ -19,7 +19,7 @@ type Job = {
 
 export default function JobCard({ job }: { job: Job }) {
   return (
-    <Link href={`/jobs/${job.id}`} target="_blank">
+    <Link href={`/jobs/${job.id}`} target="_blank" className="w-full">
       <Card className="flex flex-row md:px-4 w-full hover:shadow-md h-32">
         <div className="h-full w-1/6 flex flex-col text-wrap text-center justify-center items-center p-2">
           <Image

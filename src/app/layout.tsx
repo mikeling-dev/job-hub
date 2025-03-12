@@ -32,7 +32,7 @@ export default function RootLayout({
       >
         <AuthProvider>
           <Navbar />
-          <main className=" w-screen p-0 mt-16">{children}</main>
+          <main className="w-screen p-0 mt-16">{children}</main>
         </AuthProvider>
       </body>
     </html>
